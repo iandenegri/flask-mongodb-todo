@@ -39,5 +39,11 @@ def complete_todo(oid):
 @main.route('/delete_completed')
 def delete_completed():
     todos_collection = mongo.db.todo
-    todos_collection.delete_many({'completed': True})
+    todos_collection.delete_many({'complete': True})
+    return redirect(url_for('main.index'))
+
+@main.route('/delete_all')
+def delete_all():
+    todos_collection = mongo.db.todo
+    todos_collection.delete_many({})
     return redirect(url_for('main.index'))
